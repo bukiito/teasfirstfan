@@ -3,55 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>teasfirstfan</title>
+    <title>teasirstfan</title>
     
     <style>
+        /* CSS Kodları - Bu bölüm sayfanın görünümünü ayarlar */
         body {
             background-color: #121212; /* Koyu arka plan */
             color: #ffffff; /* Beyaz yazı rengi */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* İçeriği yatayda ortalar */
-            justify-content: center; /* İçeriği dikeyde ortalar */
-            min-height: 100vh;
+            display: flex; /* İçerik için esnek kutu modeli */
+            flex-direction: column; /* Kutuları dikeyde, alt alta sıralar */
+            align-items: center; /* İçerikleri yatayda, merkeze hizalar */
+            justify-content: center; /* İçerikleri dikeyde, ekranın ortasına hizalar */
+            min-height: 100vh; /* Ekranın tamamını kaplamasını sağlar */
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            text-align: center; /* Metinleri ortalar */
+            text-align: center; /* Tüm metinleri ortalar */
         }
-    
+
         .container {
-            width: 100%;
-            max-width: 600px;
+            width: 100%; /* Telefonlarda ekranın tamamını kullanır */
+            max-width: 600px; /* Masaüstünde çok geniş olmasını engeller */
         }
-    
+
         .profile-pic {
             width: 120px;
             height: 120px;
-            border-radius: 50%;
+            border-radius: 50%; /* Resmi yuvarlak yapar */
             border: 3px solid #ffffff;
             object-fit: cover;
             margin-bottom: 20px;
         }
-    
+
         h1 {
             font-size: 2em;
             margin-bottom: 10px;
         }
-    
+
         p {
             font-size: 1em;
             margin-bottom: 30px;
             opacity: 0.8;
         }
-    
+
         .link-button {
-            display: block;
-            width: 100%;
+            display: block; /* Butonları alt alta, blok olarak sıralar */
+            width: 100%; /* Butonların ekranı kaplamasını sağlar, dokunması kolaydır */
             background-color: #333333;
             color: #ffffff;
-            text-decoration: none;
+            text-decoration: none; /* Alt çizgiyi kaldırır */
             padding: 15px 25px;
             margin-bottom: 15px;
             border-radius: 10px;
@@ -59,10 +60,10 @@
             transition: transform 0.2s, background-color 0.2s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-    
+
         .link-button:hover {
             background-color: #555555;
-            transform: translateY(-2px);
+            transform: translateY(-2px); /* Hafif yukarı kalkma efekti */
         }
     </style>
 </head>
