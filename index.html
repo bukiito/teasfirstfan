@@ -1,85 +1,142 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>teasirstfan</title>
-    
-    <style>
-        /* CSS Kodları - Bu bölüm sayfanın görünümünü ayarlar */
-        body {
-            background-color: #121212; /* Koyu arka plan */
-            color: #ffffff; /* Beyaz yazı rengi */
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex; /* İçerik için esnek kutu modeli */
-            flex-direction: column; /* Kutuları dikeyde, alt alta sıralar */
-            align-items: center; /* İçerikleri yatayda, merkeze hizalar */
-            justify-content: center; /* İçerikleri dikeyde, ekranın ortasına hizalar */
-            min-height: 100vh; /* Ekranın tamamını kaplamasını sağlar */
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center; /* Tüm metinleri ortalar */
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>teasfirstfan</title>
+  <meta name="color-scheme" content="dark light" />
+  <style>
+    :root{
+      /* Mobil temel ölçüler */
+      --radius: 14px;
+      --pad: 20px;
+      --maxw: 640px;
+      --btn-pad-y: 14px;
+      --btn-pad-x: 24px;
+    }
 
-        .container {
-            width: 100%; /* Telefonlarda ekranın tamamını kullanır */
-            max-width: 600px; /* Masaüstünde çok geniş olmasını engeller */
-        }
+    /* ========== Base ========== */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+      display: grid;
+      place-items: center;
+      padding: calc(env(safe-area-inset-top) + var(--pad)) var(--pad)
+               calc(env(safe-area-inset-bottom) + var(--pad));
+      text-align: center;
+    }
 
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%; /* Resmi yuvarlak yapar */
-            border: 3px solid #ffffff;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
+    @media (prefers-color-scheme: light){
+      body{ background:#f6f6f7; color:#111; }
+    }
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
+    .container{
+      width: 100%;
+      max-width: var(--maxw);
+    }
 
-        p {
-            font-size: 1em;
-            margin-bottom: 30px;
-            opacity: 0.8;
-        }
+    /* ========== Profile ========== */
+    .avatar{
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      border: 3px solid currentColor;
+      object-fit: cover;
+      display:block;
+      margin: 0 auto 16px;
+    }
 
-        .link-button {
-            display: block; /* Butonları alt alta, blok olarak sıralar */
-            width: 100%; /* Butonların ekranı kaplamasını sağlar, dokunması kolaydır */
-            background-color: #333333;
-            color: #ffffff;
-            text-decoration: none; /* Alt çizgiyi kaldırır */
-            padding: 15px 25px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    h1{
+      margin: 0 0 8px;
+      font-weight: 700;
+      /* Mobilde küçük, geniş ekranda büyür */
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      letter-spacing: 0.2px;
+    }
 
-        .link-button:hover {
-            background-color: #555555;
-            transform: translateY(-2px); /* Hafif yukarı kalkma efekti */
-        }
-    </style>
+    .subtitle{
+      margin: 0 0 28px;
+      opacity: .8;
+      font-size: clamp(0.95rem, 3.6vw, 1.15rem);
+    }
+
+    /* ========== Buttons ========== */
+    .links{
+      display: grid;
+      gap: 14px;
+      width: 100%;
+      margin-inline: auto;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-decoration: none;
+      border-radius: var(--radius);
+      padding: var(--btn-pad-y) var(--btn-pad-x);
+      min-height: 48px;                /* dokunmatik konfor */
+      font-weight: 700;
+      line-height: 1.2;
+      background: #2f2f2f;
+      color: #fff;
+      box-shadow: 0 6px 14px rgba(0,0,0,.18);
+      transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+      will-change: transform;
+    }
+    .btn:hover{ background:#444; transform: translateY(-2px); }
+    .btn:active{ transform: translateY(0); }
+    .btn:focus-visible{
+      outline: 3px solid #7aa2ff;
+      outline-offset: 2px;
+    }
+
+    @media (prefers-color-scheme: light){
+      .btn{ background:#e6e6e9; color:#111; box-shadow: 0 6px 14px rgba(0,0,0,.08); }
+      .btn:hover{ background:#dcdce1; }
+    }
+
+    /* Hareket hassasiyeti olan kullanıcılara saygı */
+    @media (prefers-reduced-motion: reduce){
+      .btn{ transition: none; }
+      .btn:hover, .btn:active{ transform:none; }
+    }
+
+    /* ========== Tablet & Desktop iyileştirmeleri ========== */
+    @media (min-width: 768px){
+      .avatar{ width: 140px; height: 140px; margin-bottom: 18px; }
+      .links{ gap: 16px; }
+      .btn{ font-size: 1.05rem; }
+    }
+
+    @media (min-width: 1024px){
+      /* PC’de tipografi ve boşlukları biraz büyüt */
+      h1{ font-size: clamp(2rem, 2.2vw, 2.6rem); }
+      .subtitle{ font-size: clamp(1.05rem, 1.2vw, 1.25rem); }
+      .links{
+        /* İstersen butonları yan yana da yapabilirsin: */
+        /* grid-template-columns: 1fr 1fr; */
+        max-width: 520px;
+      }
+      .btn{ font-size: 1.12rem; padding: 16px 28px; }
+    }
+  </style>
 </head>
 <body>
+  <main class="container" role="main">
+    <img src="tea.jpg" alt="Profil fotoğrafı" class="avatar" />
+    <h1>teasfirstfan</h1>
+    <p class="subtitle">WELCOME</p>
 
-    <div class="container">
-        <img src="tea.jpg" alt="Profil Fotoğrafı" class="profile-pic">
-        
-        <h1>teasfirstfan</h1>
-        
-        <p>WELCOME</p>
-        
-        <a href="https://teabird.netlify.app/" class="link-button" target="_blank">Flappy Bird - Tea Version</a>
-        <a href="https://wherestea.netlify.app/" class="link-button" target="_blank">Where's Waldo - Tea Version</a>
-
-    </div>
-
+    <nav class="links" aria-label="Oyun bağlantıları">
+      <a class="btn" href="https://teabird.netlify.app/" target="_blank" rel="noopener">Flappy Bird – Tea Version</a>
+      <a class="btn" href="https://wherestea.netlify.app/" target="_blank" rel="noopener">Where’s Waldo – Tea Version</a>
+    </nav>
+  </main>
 </body>
 </html>
